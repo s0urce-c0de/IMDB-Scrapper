@@ -71,6 +71,16 @@ def _real_main(url: str, UserAgent = None):
       "video": i['url']
     } for i in main_data['props']['pageProps']['aboveTheFoldData']['primaryVideos']['edges'][0]['node']['playbackURLs']
   ]
+  data['plot'] = {
+    "text": main_data['props']['pageProps']['aboveTheFoldData']['plot']['plotText']['plainText'],
+    "language": main_data['props']['pageProps']['aboveTheFoldData']['plot']['language']['id']
+  }
+  data['genres'] = [
+    {
+      "genre": i['text'],
+      "genre_id": i['id']
+    } for i in main_data['props']['pageProps']['aboveTheFoldData']['genres']['genres']
+  ]
   return json.dumps(data)
 
 
