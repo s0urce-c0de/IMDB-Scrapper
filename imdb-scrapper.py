@@ -47,6 +47,7 @@ def _real_main(url: str, UserAgent = None):
   page_data = json.loads([td.text for td in tree.xpath("//script[@type=\"application/ld+json\"]")][0])
 
   data['raw']={"main": main_data, "page": page_data}
+  data['title'] = page_data['name']
   data['release_date'] = {
     "year": main_data['props']['pageProps']['aboveTheFoldData']['releaseDate']['year'],
     "month": main_data['props']['pageProps']['aboveTheFoldData']['releaseDate']['month'],
