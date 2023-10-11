@@ -82,7 +82,7 @@ def _real_main(url: str, UserAgent = None):
       "genre_id": i['id']
     } for i in main_data['props']['pageProps']['aboveTheFoldData']['genres']['genres']
   ]
-  return json.dumps(data)
+  return data
 
 
 @click.command(context_settings=dict(help_option_names=["-h", "--help"]))
