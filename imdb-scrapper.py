@@ -48,12 +48,15 @@ def _real_main(url: str, UserAgent = None):
 
   data['raw']={"main": main_data, "page": page_data}
   data['title'] = page_data['name']
+  data['description'] = page_data['description']
+  data['content_rating'] = page_data['contentRating']
+  data['keywords'] = page_data['keywords'].split(',')
   data['release_date'] = {
     "year": main_data['props']['pageProps']['aboveTheFoldData']['releaseDate']['year'],
     "month": main_data['props']['pageProps']['aboveTheFoldData']['releaseDate']['month'],
     "day": main_data['props']['pageProps']['aboveTheFoldData']['releaseDate']['day']
   }
-  data['reviews'] = {
+  data['rating'] = {
     "value": main_data['props']['pageProps']['aboveTheFoldData']['ratingsSummary']['aggregateRating'],
     "reviews": main_data['props']['pageProps']['aboveTheFoldData']['ratingsSummary']['voteCount']
   }
