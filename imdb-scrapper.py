@@ -7,7 +7,6 @@ import socket
 import sys
 import requests
 import json
-from requests import ConnectionError
 from lxml import html
 
 
@@ -80,11 +79,12 @@ def _real_main(url: str, UserAgent = None):
     "language": main_data['props']['pageProps']['aboveTheFoldData']['plot']['language']['id']
   }
   data['genres'] = [
-    {
-      "genre": i['text'],
-      "genre_id": i['id']
-    } for i in main_data['props']['pageProps']['aboveTheFoldData']['genres']['genres']
+    i['node']['text'] for i in main_data['props']['pageProps']['aboveTheFoldData']['keywords']['edges']
   ]
+  data['runtime'] = {
+    "seconds": main_data['props']['pageProps']['aboveTheFoldData']['runtime']['seconds'],
+    "text": main_data['props']['pageProps']['aboveTheFoldData']['runtime']['displayableProperty']['value']['plainText']
+  }
   return data
 
 
