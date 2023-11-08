@@ -102,7 +102,7 @@ def main(movie: str):
     click.echo("Please connect to the internet to use the IMDB-Scrapper.")
     raise
   
-  print(_real_main(movie))
+  print(json.dumps(_real_main(movie)))
 
 
 
